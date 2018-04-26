@@ -51,19 +51,18 @@ def confidence_interval_for_mean_value(x,y, ta2, xp, predict=0):
 def get_yp_range(yp, interval):
     return yp - interval, yp + interval
 
-x = [69.3,87.7,50.5,51.9,82.7,70.5,72.4,91.7,83.3,86.5,79.3,78.5,75.7,52.3,62.2]
-y = [56,89,55,49,61,66,72,83,73,82,92,80,64,18,76]
-xp = 78.6
-ta = 1.771
+x = [2,7,2,7,2,7,0, 4,5,4,0,1,0,1, 0,6,6,2,2,1, 3,1,3,1,3,1]
+y = [76,29,96,63,79,71,88, 41,63,88,98,99,89,96, 92,55,70,80,75,63, 90,90,68,84,80,78]
+ta = 2.064
+xp = 5
 
-
-# print("b1: ", b1(x, y))
-# print("b0: ", b0(x, y))
-# print("sse:", sse(x, y))
-# print("s esu", s_esu(x,y))
-# print("confidence_interval_part2:",confidence_interval_part2(x,y, 2.306))
-# print("t:", t_test(x,y))
-# print("cod r2:", cod(x,y))
+print("b1: ", b1(x, y))
+print("b0: ", b0(x, y))
+print("sse:", sse(x, y))
+print("s esu", s_esu(x,y))
+print("b1 confidence_interval_part2:",confidence_interval_part2(x,y, ta))
+print("t:", t_test(x,y))
+print("cod r2:", cod(x,y))
 
 print("yp:", yp(x,y,xp))
 print("inteval:", confidence_interval_for_mean_value(x,y,ta,xp, 1))
