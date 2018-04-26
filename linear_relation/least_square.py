@@ -23,9 +23,24 @@ def b0(x,y):
     return np.mean(y) - b1(x, y) * np.mean(x)
 
 
-x = [2,3,3,3,4,4,5,5,5,6]
-y = [28.7,24.8,26,30.5,23.8,24.6,23.8,20.4,21.6,22.1]
+def sse(x,y):
+    return ss_xx(y) - b1(x,y) * ss_xy(x, y)
 
+def s_esu(x,y):
+    return math.sqrt(sse(x,y) / (len(x) -2))
+
+def confidence_interval_part2(x,y, crical_i):
+    return crical_i * s_esu(x,y) / math.sqrt(ss_xx(x))
+
+def t_test(x,y,b0=0):
+    return (b1(x,y) - b0) / (s_esu(x,y) / math.sqrt(ss_xx(x)))
+
+x = [1,1,3,4,5]
+y = [2,1,5,3,4]
 
 print("b1: ", b1(x, y))
 print("b0: ", b0(x, y))
+print("sse:", sse(x, y))
+print("s esu", s_esu(x,y))
+print("confidence_interval_part2:",confidence_interval_part2(x,y, 2.353))
+print("t:", t_test(x,y))
