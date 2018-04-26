@@ -38,13 +38,33 @@ def t_test(x,y,b0=0):
 def cod(x,y):
     return b1(x,y) * ss_xy(x,y) / ss_xx(y)
 
+def yp(x,y, target_x):
+    return target_x * b1(x, y) + b0(x,y)
+
+def confidence_interval_for_mean_value(x,y, ta2, xp, predict=0):
+    s_es = s_esu(x,y)
+    xp_minus_xmean = math.pow(xp - np.mean(x),2)
+    xp_minus_xmean_divide_ssxx = xp_minus_xmean / ss_xx(x)
+    total = math.sqrt(predict + 1/len(x) + xp_minus_xmean_divide_ssxx)
+    return ta2 * s_es * total
+
+def get_yp_range(yp, interval):
+    return yp - interval, yp + interval
+
 x = [69.3,87.7,50.5,51.9,82.7,70.5,72.4,91.7,83.3,86.5,79.3,78.5,75.7,52.3,62.2]
 y = [56,89,55,49,61,66,72,83,73,82,92,80,64,18,76]
+xp = 78.6
+ta = 1.771
+
 
 # print("b1: ", b1(x, y))
 # print("b0: ", b0(x, y))
 # print("sse:", sse(x, y))
 # print("s esu", s_esu(x,y))
-# print("confidence_interval_part2:",confidence_interval_part2(x,y, 1.771))
+# print("confidence_interval_part2:",confidence_interval_part2(x,y, 2.306))
 # print("t:", t_test(x,y))
-print("cod r2:", cod(x,y))
+# print("cod r2:", cod(x,y))
+
+print("yp:", yp(x,y,xp))
+print("inteval:", confidence_interval_for_mean_value(x,y,ta,xp, 1))
+print("range:", get_yp_range(yp(x,y,3.5), confidence_interval_for_mean_value(x,y,ta,xp, 1)))
