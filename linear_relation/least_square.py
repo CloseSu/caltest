@@ -51,10 +51,10 @@ def confidence_interval_for_mean_value(x,y, ta2, xp, predict=0):
 def get_yp_range(yp, interval):
     return yp - interval, yp + interval
 
-x = [2,7,2,7,2,7,0, 4,5,4,0,1,0,1, 0,6,6,2,2,1, 3,1,3,1,3,1]
-y = [76,29,96,63,79,71,88, 41,63,88,98,99,89,96, 92,55,70,80,75,63, 90,90,68,84,80,78]
-ta = 2.064
-xp = 5
+x = [0,0,1.1,1.4,1.6, 1.7,2.0,2.0,2.2,2.2]
+y = [0.3,0.1,4.7,3.2,5.1, 7.0,5.0,6.1,8.6,9.5]
+ta = 2.306
+xp = 2
 
 print("b1: ", b1(x, y))
 print("b0: ", b0(x, y))
@@ -66,4 +66,4 @@ print("cod r2:", cod(x,y))
 
 print("yp:", yp(x,y,xp))
 print("inteval:", confidence_interval_for_mean_value(x,y,ta,xp, 1))
-print("range:", get_yp_range(yp(x,y,3.5), confidence_interval_for_mean_value(x,y,ta,xp, 1)))
+print("range:", get_yp_range(yp(x,y,xp), confidence_interval_for_mean_value(x,y,ta,xp, 1)))
