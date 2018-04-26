@@ -35,12 +35,16 @@ def confidence_interval_part2(x,y, crical_i):
 def t_test(x,y,b0=0):
     return (b1(x,y) - b0) / (s_esu(x,y) / math.sqrt(ss_xx(x)))
 
-x = [1,1,3,4,5]
-y = [2,1,5,3,4]
+def cod(x,y):
+    return b1(x,y) * ss_xy(x,y) / ss_xx(y)
 
-print("b1: ", b1(x, y))
-print("b0: ", b0(x, y))
-print("sse:", sse(x, y))
-print("s esu", s_esu(x,y))
-print("confidence_interval_part2:",confidence_interval_part2(x,y, 2.353))
-print("t:", t_test(x,y))
+x = [69.3,87.7,50.5,51.9,82.7,70.5,72.4,91.7,83.3,86.5,79.3,78.5,75.7,52.3,62.2]
+y = [56,89,55,49,61,66,72,83,73,82,92,80,64,18,76]
+
+# print("b1: ", b1(x, y))
+# print("b0: ", b0(x, y))
+# print("sse:", sse(x, y))
+# print("s esu", s_esu(x,y))
+# print("confidence_interval_part2:",confidence_interval_part2(x,y, 1.771))
+# print("t:", t_test(x,y))
+print("cod r2:", cod(x,y))
