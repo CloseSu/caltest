@@ -1,4 +1,5 @@
 import math
+import numpy as np
 
 def ladder_miti(n):
     total_n = 1
@@ -32,19 +33,29 @@ def sigma2(give_n, give_p, q):
 def sigma(give_n, give_p, q):
     return math.sqrt(sigma2(give_n, give_p, q))
 
-def px_list(give_n, give_p, x_list, q):
-    total = 0
-    for give_x in x_list:
-        total += px(give_n, give_p, give_x, q)
-    return total
+def get_all_p(give_n, give_p, q):
+    p_lixt = []
+    i_list = []
+    for i in range(give_n + 1):
+        px_num = round(px(give_n, give_p, i, q), 4)
+        p_lixt.append(px_num)
+        i_list.append(i)
+    return p_lixt, i_list
 
+def sum_exp(p_lixt, i_list):
+    sum = 0
+    for p,i in zip(p_lixt, i_list):
+        sum += p * i
+    return round(sum, 4)
 
-give_n = 10
-give_p = 0.25
-give_x = 5
+give_n = 5
+give_p = 0.17
+give_x = 0
 q = 1 - give_p
 
-# print("px", px(give_n, give_p, give_x, q))
+print("px", px(give_n, give_p, give_x, q))
+print("get_all_p:", get_all_p(give_n, give_p, q)[0])
+print("sum all p:", sum_exp(get_all_p(give_n, give_p, q)[0], get_all_p(give_n, give_p, q)[1]))
+print("====================================================================================")
 print("mu", mu(give_n, give_p))
 print("sigma", sigma(give_n, give_p, q))
-print("px_list", px_list(give_n, give_p, [3], q))
